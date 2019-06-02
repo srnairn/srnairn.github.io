@@ -1,150 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
-.w3-sidebar {
-  z-index: 3;
-  width: 250px;
-  top: 43px;
-  bottom: 0;
-  height: inherit;
-}
-</style>
-<body>
+{% assign page-lang = page.lang | default: site.lang | default: "en" %}
+<html lang="{{ page-lang }}">
 
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1">Logo</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Values</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">News</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Clients</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Partners</a>
-  </div>
-</div>
+  <head>
+    {% if page-lang == "en" %}
+      {% assign page-lang-country = "en_US" %}
+    {% elsif page-lang == "it" %}
+      {% assign page-lang-country = "it_IT" %}
+    {% endif %}
 
-<!-- Sidebar -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
-    <i class="fa fa-remove"></i>
-  </a>
-  <h4 class="w3-bar-item"><b>Menu</b></h4>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-</nav>
+    {% include language-meta-link.html %}
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    <!-- Non social metatags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#157878">
 
-<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
-<div class="w3-main" style="margin-left:250px">
+    {% include page-title.html %}
 
-  <div class="w3-row w3-padding-64">
-    <div class="w3-twothird w3-container">
-      <h1 class="w3-text-teal">Heading</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div class="w3-third w3-container">
-      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
-      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
-    </div>
-  </div>
+    <title>{{ page_title }}</title>
 
-  <div class="w3-row">
-    <div class="w3-twothird w3-container">
-      <h1 class="w3-text-teal">Heading</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div class="w3-third w3-container">
-      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
-      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
-    </div>
-  </div>
+    {% if page.title %}
+      {% assign header_title = page.title | escape %}
+    {% else %}
+      {% assign header_title = site.title | escape %}
+    {% endif %}
 
-  <div class="w3-row w3-padding-64">
-    <div class="w3-twothird w3-container">
-      <h1 class="w3-text-teal">Heading</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div class="w3-third w3-container">
-      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
-      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
-    </div>
-  </div>
+    {% if site.gems contains "jekyll-seo-tag" %}
+      <!-- jekyll-seo-tag -->
+    {% else %}
+      {% include social-metatags.html %}
+    {% endif %}
 
-  <!-- Pagination -->
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a class="w3-button w3-black" href="#">1</a>
-      <a class="w3-button w3-hover-black" href="#">2</a>
-      <a class="w3-button w3-hover-black" href="#">3</a>
-      <a class="w3-button w3-hover-black" href="#">4</a>
-      <a class="w3-button w3-hover-black" href="#">5</a>
-      <a class="w3-button w3-hover-black" href="#">»</a>
-    </div>
-  </div>
+    {% assign canonical_url = page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url %}
 
-  <footer id="myFooter">
-    <div class="w3-container w3-theme-l2 w3-padding-32">
-      <h4>Footer</h4>
-    </div>
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
-    <div class="w3-container w3-theme-l1">
-      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </div>
-  </footer>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed-' | prepend: site.baseurl | prepend: site.url | append: page.lang | append: '.xml' }}">
 
-<!-- END MAIN -->
-</div>
+    <link rel="shortcut icon" href="{{ '/favicon.ico' | prepend: site.baseurl }}">
+    <meta name="robots" content="noarchive">
 
-<script>
-// Get the Sidebar
-var mySidebar = document.getElementById("mySidebar");
-// Get the DIV with overlay effect
-var overlayBg = document.getElementById("myOverlay");
-// Toggle between showing and hiding the sidebar, and add overlay effect
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-    overlayBg.style.display = "none";
-  } else {
-    mySidebar.style.display = 'block';
-    overlayBg.style.display = "block";
-  }
-}
-// Close the sidebar with the close button
-function w3_close() {
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
-}
-</script>
+    <!-- <link rel="alternate" media="only screen and (max-width: 640px)" href="">
+    <link rel="alternate" media="handheld" href=""> -->
 
-</body>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | prepend: site.baseurl }}">
+
+  </head>
+  <body>
+
+    {% include site-header.html %}
+
+    {% if page.layout == 'home' %}
+      {% assign page-tagline = page.tagline | default: site.description | escape %}
+      {% assign header-padding = "80px" %}
+      {% assign header-padding-bottom = "40px" %}
+    {% else %}
+      {% assign header-padding = "40px" %}
+      {% assign header-padding-bottom = "20px" %}
+    {% endif %}
+
+    {% if page.layout == 'page' or page.layout == 'category' %}
+      {% assign page-tagline = page.tagline | escape %}
+    {% endif %}
+
+    {% if page.layout == 'post' %}
+      {% assign page-tagline = page.tagline | default: page.repository.project_tagline | escape  %}
+    {% endif %}
+
+    <section class="page-header" style="padding-top: {{ header-padding }}; padding-bottom: {{ header-padding-bottom }}; background: linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.0)), url('{{ site.baseurl }}{{ page.header.image | default: site.header.image }}') center center repeat;">
+      <h1 class="project-name">{{ header_title }}</h1>
+      <h2 class="project-tagline">{{ page-tagline }}</h2>
+
+      {% if page.repository.is_project_page %}
+          <a href="{{ page.repository.repository_url }}" class="btn" target="_blank">Source Code</a>
+        {% if page.repository.show_downloads %}
+          <a href="{{ page.repository.zip_url }}" class="btn" target="_blank">Download .zip</a>
+          <a href="{{ page.repository.tar_url }}" class="btn" target="_blank">Download .tar.gz</a>
+        {% endif %}
+      {% endif %}
+      <!-- Post tagline -->
+      {% if page.layout == 'post' %}
+        <!-- <h2 class="project-date">
+        </h2> -->
+      {% endif %}
+      <!-- End: Post tagline -->
+    </section>
+
+
+    <section class="main-content">
+
+      {% include language-selector.html %}
+
+      {{ content }}
+
+      {% include footer.html %}
+
+    </section>
+
+    <script type="text/javascript">
+      var menu = document.querySelector("nav.site-nav");
+      var checkbox = document.getElementById("nav-trigger");
+
+      // close menu if click outside menu
+      document.addEventListener("click", function(e) {
+        if (menu != e.target &&
+            ! isDescendant(menu, e.target)) {
+          checkbox.checked = false;
+        }
+
+      }, false);
+
+      function isDescendant(parent, child) {
+           var node = child.parentNode;
+           while (node != null) {
+               if (node == parent) {
+                   return true;
+               }
+               node = node.parentNode;
+           }
+           return false;
+      }
+
+    </script>
+
+<!-- here comments count script -->
+
+  </body>
 </html>
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
